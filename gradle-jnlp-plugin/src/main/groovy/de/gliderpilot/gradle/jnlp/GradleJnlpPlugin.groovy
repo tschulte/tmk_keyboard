@@ -17,6 +17,12 @@ package de.gliderpilot.gradle.jnlp
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.Task
+import org.gradle.api.artifacts.Configuration
+import org.gradle.model.Mutate
+import org.gradle.model.Path
+import org.gradle.model.RuleSource
+import org.gradle.model.collection.CollectionBuilder
 
 /**
  * This is the main plugin file. Put a description of your plugin here.
@@ -31,18 +37,15 @@ class GradleJnlpPlugin implements Plugin<Project> {
         project.tasks.create('generateJnlp', JnlpTask) {
             from = project.configurations.jnlp
         }
-        project.tasks.create('copyJars', CopyJarsTask) {
-            onlyIf { !project.jnlp.signJarParams }
+        project.tasks.create("incrementalCleanupSignedJars", IncrementalCleanupSignedJarsTask) {
             from = project.configurations.jnlp
-            into new File(project.buildDir, jnlp.destinationPath + '/lib')
+            libDir = new File(project.buildDir, jnlp.destinationPath + '/lib')
         }
-        project.tasks.create('signJars', SignJarsTask) {
-            onlyIf { project.jnlp.signJarParams }
-            from = project.configurations.jnlp
-            into new File(project.buildDir, jnlp.destinationPath + '/lib')
+        project.tasks.create('signJars') {
+            dependsOn 'incrementalCleanupSignedJars'
         }
         project.tasks.create('createWebstartDir') {
-            dependsOn 'generateJnlp', 'copyJars', 'signJars'
+            dependsOn 'generateJnlp', 'signJars'
             outputs.dir new File(project.buildDir, jnlp.destinationPath)
         }
         project.plugins.withId('java') {
@@ -62,5 +65,26 @@ class GradleJnlpPlugin implements Plugin<Project> {
                 webstartZip project.tasks.webstartDistZip
             }
         }
+    }
+
+    @RuleSource
+    static class Rules {
+
+        @Mutate
+        public void createSignJarTasks(CollectionBuilder<Task> tasks,
+                                       @Path("configurations.jnlp") Configuration dependencies,
+                                       @Path("tasks.signJars") Task signJarsTask,
+                                       @Path("tasks.incrementalCleanupSignedJars") Task cleanupTask,
+                                       GradleJnlpPluginExtension extension) {
+            dependencies.resolvedConfiguration.resolvedArtifacts.each { artifact ->
+                Task signTask = tasks.create("sign${artifact.file.name}", SignJarTask) {
+                    from artifact
+                    into "${project.buildDir}/${jnlp.destinationPath}/lib"
+                }
+                signJarsTask.dependsOn signTask
+                signTask.mustRunAfter cleanupTask
+            }
+        }
+
     }
 }

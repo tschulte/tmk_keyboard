@@ -16,28 +16,38 @@
 package de.gliderpilot.gradle.jnlp
 
 import org.gradle.api.DefaultTask
-import org.gradle.api.artifacts.Configuration
-import org.gradle.api.artifacts.ResolvedArtifact
+import org.gradle.api.file.FileCollection
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.OutputDirectory
+import org.gradle.api.tasks.ParallelizableTask
+import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.incremental.IncrementalTaskInputs
 
-abstract class AbstractCopyJarsTask extends DefaultTask {
+@ParallelizableTask
+class IncrementalCleanupSignedJarsTask extends DefaultTask {
 
     @InputFiles
-    Configuration from
+    FileCollection from
 
     @OutputDirectory
-    File into
+    File libDir
 
-    String newName(String fileName) {
-        ResolvedArtifact artifact = from.resolvedConfiguration.resolvedArtifacts.find { it.extension == 'jar' && it.file.name == fileName }
-        if (artifact != null) {
-            if (artifact.classifier == null)
-                "${artifact.name}__V${artifact.moduleVersion.id.version}.jar"
-            else
-                "${artifact.name}-${artifact.classifier}__V${artifact.moduleVersion.id.version}.jar"
-        } else {
-            fileName
+    @TaskAction
+    void cleanup(IncrementalTaskInputs inputs) {
+        if (!inputs.incremental)
+            project.delete(libDir.listFiles())
+        inputs.outOfDate {
+            // nothing to do
+        }
+        inputs.removed {
+            deleteOutputFile(it.file.name)
         }
     }
+
+    void deleteOutputFile(String fileName) {
+        libDir.listFiles().find {
+            fileName == (it.name - '.pack.gz').replace('__V', '-')
+        }?.delete()
+    }
+
 }
