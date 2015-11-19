@@ -367,13 +367,13 @@ static const uint16_t PROGMEM fn_actions_1[] = {
 // Plover layer
 static const uint16_t PROGMEM fn_actions_2[] = {
     [ 0] = ACTION_FUNCTION(TEENSY_KEY),
-}
+};
 static const uint16_t PROGMEM fn_actions_3[] = {
-    [ 4] = ACTION_LAYER_SET(4),
-}
+    [ 4] = ACTION_LAYER_SET(4, ON_BOTH),
+};
 static const uint16_t PROGMEM fn_actions_4[] = {
-    [ 0] = ACTION_LAYER_SET(0),
-}
+    [ 0] = ACTION_LAYER_SET(0, ON_BOTH),
+};
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
     // print("action_function called\n");
@@ -390,9 +390,11 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 
 }
 
+#define FN_ACTIONS_SIZE     (sizeof(fn_actions)   / sizeof(fn_actions[0]))
+#define FN_ACTIONS_1_SIZE   (sizeof(fn_actions_1) / sizeof(fn_actions_1[0]))
+#define FN_ACTIONS_2_SIZE   (sizeof(fn_actions_2) / sizeof(fn_actions_2[0]))
+#define FN_ACTIONS_3_SIZE   (sizeof(fn_actions_3) / sizeof(fn_actions_3[0]))
 #define FN_ACTIONS_4_SIZE   (sizeof(fn_actions_4) / sizeof(fn_actions_4[0]))
-#define FN_ACTIONS_7_SIZE   (sizeof(fn_actions_7) / sizeof(fn_actions_7[0]))
-#define FN_ACTIONS_9_SIZE   (sizeof(fn_actions_9) / sizeof(fn_actions_9[0]))
 
 /*
  * translates Fn keycode to action
@@ -407,6 +409,15 @@ action_t keymap_fn_to_action(uint8_t keycode)
 
     if (layer == 1 && FN_INDEX(keycode) < FN_ACTIONS_1_SIZE) {
         action.code = pgm_read_word(&fn_actions_1[FN_INDEX(keycode)]);
+    }
+    if (layer == 2 && FN_INDEX(keycode) < FN_ACTIONS_2_SIZE) {
+        action.code = pgm_read_word(&fn_actions_2[FN_INDEX(keycode)]);
+    }
+    if (layer == 3 && FN_INDEX(keycode) < FN_ACTIONS_3_SIZE) {
+        action.code = pgm_read_word(&fn_actions_3[FN_INDEX(keycode)]);
+    }
+    if (layer == 4 && FN_INDEX(keycode) < FN_ACTIONS_4_SIZE) {
+        action.code = pgm_read_word(&fn_actions_4[FN_INDEX(keycode)]);
     }
 
     // by default, use fn_actions from default layer 0
