@@ -74,7 +74,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               ENT,   K,   H,   G,   F,   Q,MINS,
                      S,   N,   R,   T,   D,   Z,
               DEL,   B,   M,COMM, DOT,   J,BSPC,
-                        FN2,  NO, ESC,RGUI,  NO,
+                        FN3,  NO, ESC,RGUI,  NO,
          FN4, FN1,
         RALT,
         RCTL,RSFT, SPC
