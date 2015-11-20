@@ -387,41 +387,41 @@ static const uint16_t PROGMEM fn_actions_0[] = {
 static const uint16_t PROGMEM fn_actions_1[] = {
     [ 0] = ACTION_LAYER_SET(0, ON_RELEASE),                 // FN0  = Back to layer 0
 
-    [ 1] = ACTION_MODS_KEY(MOD_LSFT, KC_SLSH),              // FN1  = Shifted Slash     // _ in Neo2
-    [ 2] = ACTION_MODS_KEY(MOD_LSFT, KC_8),                 // FN2  = Shift+8           // [ in Neo2
-    [ 3] = ACTION_MODS_KEY(MOD_LSFT, KC_9),                 // FN3  = Shift+9           // ] in Neo2
-    [ 4] = ACTION_MACRO(CARET),                             // FN4  = GRV,SPC           // ^ in Neo2
+    [ 1] = ACTION_MODS_KEY(MOD_LSFT, KC_SLSH),              // FN1  = _
+    [ 2] = ACTION_MODS_KEY(MOD_LSFT, KC_8),                 // FN2  = [
+    [ 3] = ACTION_MODS_KEY(MOD_LSFT, KC_9),                 // FN3  = ]
+    [ 4] = ACTION_MACRO(CARET),                             // FN4  = ^
 
-    [ 5] = ACTION_MODS_KEY(MOD_RALT, KC_MINS),              // FN9  = AltGr+-           // \ in Neo2
-    [ 6] = ACTION_MODS_KEY(MOD_LSFT, KC_7),                 // FN10 = Shift+7           // / in Neo2
-    [ 7] = ACTION_MODS_KEY(MOD_RALT, KC_7),                 // FN11 = AltGr+7           // { in Neo2
-    [ 8] = ACTION_MODS_KEY(MOD_RALT, KC_0),                 // FN12 = AltGr+0           // } in Neo2
-    [ 9] = ACTION_MODS_KEY(MOD_LSFT, KC_RBRC),              // FN13 = Shift+]           // * in Neo2
+    [ 5] = ACTION_MODS_KEY(MOD_RALT, KC_MINS),              // FN5  = \
+    [ 6] = ACTION_MODS_KEY(MOD_LSFT, KC_7),                 // FN6  = /
+    [ 7] = ACTION_MODS_KEY(MOD_RALT, KC_7),                 // FN7  = {
+    [ 8] = ACTION_MODS_KEY(MOD_RALT, KC_0),                 // FN8  = }
+    [ 9] = ACTION_MODS_KEY(MOD_LSFT, KC_RBRC),              // FN9  = *
 
-    [10] = ACTION_KEY(KC_BSLS),                             // FN19 = BSLS              // # in Neo2
-    [11] = ACTION_MODS_KEY(MOD_LSFT, KC_4),                 // FN19 = Shift+4           // $ in Neo2
-    [12] = ACTION_MODS_KEY(MOD_RALT, KC_NUBS),              // FN20 = Shift+4           // | in Neo2
-    [13] = ACTION_MODS_KEY(MOD_RALT, KC_RBRC),              // FN21 = Shift+4           // ~ in Neo2
-    [14] = ACTION_MACRO(GRAVE),                             // FN22 = Shift+=,SPC       // ` in Neo2
+    [10] = ACTION_KEY(KC_BSLS),                             // FN10 = #
+    [11] = ACTION_MODS_KEY(MOD_LSFT, KC_4),                 // FN11 = $
+    [12] = ACTION_MODS_KEY(MOD_RALT, KC_NUBS),              // FN12 = |
+    [13] = ACTION_MODS_KEY(MOD_RALT, KC_RBRC),              // FN13 = ~
+    [14] = ACTION_MACRO(GRAVE),                             // FN14 = `
 
-    [15] = ACTION_MODS_KEY(MOD_LSFT, KC_1),                 // FN5  = Shift+1           // ! in Neo2
-    [16] = ACTION_MACRO(LEFT_ANGLE_BRACKET),                // FN6  = Shift+\           // < in Neo2
-    [17] = ACTION_MACRO(RIGHT_ANGLE_BRACKET),               // FN6  = Shift+\           // > in Neo2
-    [18] = ACTION_MODS_KEY(MOD_LSFT, KC_0),                 // FN7  = Shift+0           // = in Neo2
-    [19] = ACTION_MODS_KEY(MOD_LSFT, KC_6),                 // FN8  = Shitf+6           // & in Neo2
+    [15] = ACTION_MODS_KEY(MOD_LSFT, KC_1),                 // FN15 = !
+    [16] = ACTION_MACRO(LEFT_ANGLE_BRACKET),                // FN16 = <
+    [17] = ACTION_MACRO(RIGHT_ANGLE_BRACKET),               // FN17 = >
+    [18] = ACTION_MODS_KEY(MOD_LSFT, KC_0),                 // FN18 = =
+    [19] = ACTION_MODS_KEY(MOD_LSFT, KC_6),                 // FN19 = &
 
-    [20] = ACTION_MODS_KEY(MOD_LSFT, KC_MINS),              // FN14 = Shift+-           // ? in Neo2
-    [21] = ACTION_MODS_KEY(MOD_LSFT, KC_8),                 // FN15 = Shift+8           // ( in Neo2
-    [22] = ACTION_MODS_KEY(MOD_LSFT, KC_9),                 // FN16 = Shift+9           // ) in Neo2
-    [23] = ACTION_KEY(KC_SLSH),                             // FN16 = Shift+9           // - in Neo2
-    [24] = ACTION_MODS_KEY(MOD_LSFT, KC_BSLS),              // FN17 = Shift+\           // : in Neo2
-    [25] = ACTION_MODS_KEY(MOD_RALT, KC_Q),                 // FN18 = AltGr+Q           // @ in Neo2
+    [20] = ACTION_MODS_KEY(MOD_LSFT, KC_MINS),              // FN20 = ?
+    [21] = ACTION_MODS_KEY(MOD_LSFT, KC_8),                 // FN21 = (
+    [22] = ACTION_MODS_KEY(MOD_LSFT, KC_9),                 // FN22 = )
+    [23] = ACTION_KEY(KC_SLSH),                             // FN23 = -
+    [24] = ACTION_MODS_KEY(MOD_LSFT, KC_BSLS),              // FN24 = :
+    [25] = ACTION_MODS_KEY(MOD_RALT, KC_Q),                 // FN25 = @
 
-    [26] = ACTION_KEY(KC_RBRC),                             // FN23 = Shift+5           // + in Neo2
-    [27] = ACTION_MODS_KEY(MOD_LSFT, KC_5),                 // FN23 = Shift+5           // % in Neo2
-    [28] = ACTION_MODS_KEY(MOD_LSFT, KC_2),                 // FN24 = Shift+2           // " in Neo2
-    [29] = ACTION_MODS_KEY(MOD_LSFT, KC_BSLS),              // FN25 = Shift+\           // ' in Neo2
-    [30] = ACTION_MODS_KEY(MOD_LSFT, KC_COMM),              // FN = Shift+,             // ; in Neo2
+    [26] = ACTION_KEY(KC_RBRC),                             // FN26 = +
+    [27] = ACTION_MODS_KEY(MOD_LSFT, KC_5),                 // FN27 = %
+    [28] = ACTION_MODS_KEY(MOD_LSFT, KC_2),                 // FN28 = "
+    [29] = ACTION_MODS_KEY(MOD_LSFT, KC_BSLS),              // FN29 = '
+    [30] = ACTION_MODS_KEY(MOD_LSFT, KC_COMM),              // FN30 = ;
 };
 // Plover layer
 static const uint16_t PROGMEM fn_actions_2[] = {
