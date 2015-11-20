@@ -171,7 +171,7 @@ uint8_t matrix_scan(void)
 
     ergodox_board_led_off();
     switch (layer) {
-        case 4:
+        case 5:
             // all
             ergodox_board_led_on();
             break;

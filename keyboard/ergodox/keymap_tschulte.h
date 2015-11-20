@@ -262,7 +262,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *   |      |      |      |      |      |                                       |      |      |      |      |      |
      *   `----------------------------------'                                       `----------------------------------'
      *                                        ,-------------.       ,-------------.
-     *                                        |      |  L0  |       |      |      |
+     *                                        |   L0 |      |       |      |      |
      *                                 ,------|------|------|       |------+------+------.
      *                                 |      |      |      |       |      |      |      |
      *                                 |  C   |  V   |------|       |------|  N   |   M  |
@@ -271,23 +271,23 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     KEYMAP(
         // left hand
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,   1,   2,   3,   4,   5,TRNS,
-        TRNS,   Q,   W,   E,   R,   T,
-        TRNS,   A,   S,   D,   F,   G,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,
-                                      TRNS,TRNS,
-                                           TRNS,
-                                    C,   V,TRNS,
+          NO,  NO,  NO,  NO,  NO,  NO,  NO,
+          NO,   1,   2,   3,   4,   5,  NO,
+          NO,   Q,   W,   E,   R,   T,
+          NO,   A,   S,   D,   F,   G,  NO,
+          NO,  NO,  NO,  NO,  NO,
+                                       FN0,  NO,
+                                             NO,
+                                    C,   V,  NO,
         // right hand
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-             TRNS,   6,   7,   8,   9,   0,TRNS,
+               NO,  NO,  NO,  NO,  NO,  NO,  NO,
+               NO,   6,   7,   8,   9,   0,  NO,
                      Y,   U,   I,   O,   P,LBRC,
-             TRNS,   H,   J,   K,   L,SCLN, DOT,
-                       TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,
-        TRNS,
-        TRNS,   N,   M
+               NO,   H,   J,   K,   L,SCLN, DOT,
+                         NO,  NO,  NO,  NO,  NO,
+          NO,  NO,
+          NO,
+          NO,   N,   M
     ),
     /*
      * Keymap: Template
@@ -304,7 +304,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *   |      |      |      |      |      |                                       |      |      |      |      |      |
      *   `----------------------------------'                                       `----------------------------------'
      *                                        ,-------------.       ,-------------.
-     *                                        |  L0  |      |       |      |      |
+     *                                        |      |      |       |      |      |
      *                                 ,------|------|------|       |------+------+------.
      *                                 |      |      |      |       |      |      |      |
      *                                 |      |      |------|       |------|      |      |
@@ -364,6 +364,8 @@ enum function_id {
 enum macro_id {
     CARET,
     GRAVE,
+    LEFT_ANGLE_BRACKET,
+    RIGHT_ANGLE_BRACKET,
 };
 
 /*
@@ -403,8 +405,8 @@ static const uint16_t PROGMEM fn_actions_1[] = {
     [14] = ACTION_MACRO(GRAVE),                             // FN22 = Shift+=,SPC       // ` in Neo2
 
     [15] = ACTION_MODS_KEY(MOD_LSFT, KC_1),                 // FN5  = Shift+1           // ! in Neo2
-    [16] = ACTION_KEY(KC_NUBS),                             // FN6  = Shift+\           // < in Neo2
-    [17] = ACTION_MODS_KEY(MOD_LSFT, KC_NUBS),              // FN6  = Shift+\           // > in Neo2
+    [16] = ACTION_MACRO(LEFT_ANGLE_BRACKET),                // FN6  = Shift+\           // < in Neo2
+    [17] = ACTION_MACRO(RIGHT_ANGLE_BRACKET),               // FN6  = Shift+\           // > in Neo2
     [18] = ACTION_MODS_KEY(MOD_LSFT, KC_0),                 // FN7  = Shift+0           // = in Neo2
     [19] = ACTION_MODS_KEY(MOD_LSFT, KC_6),                 // FN8  = Shitf+6           // & in Neo2
 
@@ -451,6 +453,19 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
     }
 
 }
+
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
+    if (record->event.pressed) {
+        switch (id) {
+            case CARET:  return MACRO(I(15), T(GRV), T(SPC), END);
+            case GRAVE:     return MACRO(I(15), D(LSFT), T(EQL), U(LSFT), T(SPC), END);
+            case LEFT_ANGLE_BRACKET:     return MACRO(I(15), T(NUBS), END);
+            case RIGHT_ANGLE_BRACKET:     return MACRO(I(15), D(LSFT), T(NUBS), U(LSFT), END);
+        }
+    }
+    return MACRO_NONE;
+}
+
 
 #define FN_ACTIONS_SIZE     (sizeof(fn_actions)   / sizeof(fn_actions[0]))
 #define FN_ACTIONS_0_SIZE   (sizeof(fn_actions_0) / sizeof(fn_actions_0[0]))
