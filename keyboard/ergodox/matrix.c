@@ -169,14 +169,12 @@ uint8_t matrix_scan(void)
 #ifdef KEYMAP_TSCHULTE
     uint8_t layer = biton32(layer_state);
 
-    ergodox_board_led_off();
     switch (layer) {
         case 5:
-            // all
             ergodox_board_led_on();
             break;
         default:
-            // none
+            ergodox_board_led_off();
             break;
     }
 #endif
