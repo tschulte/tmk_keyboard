@@ -392,7 +392,7 @@ static const uint16_t PROGMEM fn_actions_1[] = {
     [ 3] = ACTION_MODS_KEY(MOD_LSFT, KC_9),                 // FN3  = ]
     [ 4] = ACTION_MACRO(CARET),                             // FN4  = ^
 
-    [ 5] = ACTION_MODS_KEY(MOD_RALT, KC_MINS),              // FN5  = \
+    [ 5] = ACTION_MODS_KEY(MOD_RALT, KC_MINS),              // FN5  = Backslash
     [ 6] = ACTION_MODS_KEY(MOD_LSFT, KC_7),                 // FN6  = /
     [ 7] = ACTION_MODS_KEY(MOD_RALT, KC_7),                 // FN7  = {
     [ 8] = ACTION_MODS_KEY(MOD_RALT, KC_0),                 // FN8  = }
