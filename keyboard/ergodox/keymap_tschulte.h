@@ -91,35 +91,35 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |--------+------+------+------+------+------| PgDn |           |  Del |------+------+------+------+------+--------|
      * |        |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | Backsp |
      * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-     *   | App  | LGui |      |      |   '  |                                       |   '  |      |  ESC | RGui |      |
+     *   | App  | LGui |      |      | RALT |                                       | RALT |      |  ESC | RGui |      |
      *   `----------------------------------'                                       `----------------------------------'
      *                                        ,-------------.       ,-------------.
-     *                                        |  L5  |  L4  |       |  L4  |  L0  |
+     *                                        |      |  L5  |       |  L5  |  L0  |
      *                                 ,------|------|------|       |------+------+------.
      *                                 |      |      | LAlt |       | LAlt |      |      |
-     *                                 |  L1  |LShift|------|       |------|RShift| Space|
+     *                                 |CAPS  |LShift|------|       |------|RShift| Space|
      *                                 |      |      | LCtrl|       | RCtrl|      |      |
      *                                 `--------------------'       `--------------------'
      */
     KEYMAP(
         // left hand
-          NO,  NO,  NO,  NO,  NO,  NO,  NO,
-          NO,   1,   2,   3,   4,   5,  NO,
-          NO,   Q,   W,   E,   R,   T,
-          NO,   A,   S,   D,   F,   G,  NO,
-          NO,  NO,  NO,  NO,  NO,
-                                       FN0,  NO,
-                                             NO,
-                                    C,   V,  NO,
+          NO,   1,   2,   3,   4,   5, GRV,
+          NO,   Q,   W,   E,   R,   T,PGUP,
+         TAB,   A,   S,   D,   F,   G,
+          NO,   Z,   X,   C,   V,   B,PGDN,
+         APP,LGUI,  NO,  NO,RALT,
+                                        NO, FN5,
+                                           LALT,
+                                 CAPS,LSFT,LCTL,
         // right hand
-               NO,  NO,  NO,  NO,  NO,  NO,  NO,
-               NO,   6,   7,   8,   9,   0,  NO,
-                     Y,   U,   I,   O,   P,LBRC,
-               NO,   H,   J,   K,   L,SCLN,QUOT,
-                         NO,  NO,  NO,  NO,  NO,
-          NO,  NO,
-          NO,
-          NO,   N,   M
+             RBRC,   6,   7,   8,   9,   0, EQL,
+              ENT,   Y,   U,   I,   O,   P,LBRC,
+                     H,   J,   K,   L,SCLN,QUOT,
+              DEL,   N,   M,COMM, DOT,SLSH,BSPC,
+                       RALT,  NO, ESC,RGUI,  NO,
+         FN5, FN0,
+        LALT,
+        RCTL,RSFT, SPC
     ),
     /*
      * Keymap: Layer 2: Symbols and function keys
@@ -418,17 +418,22 @@ static const uint16_t PROGMEM fn_actions[] = {
 
 static const uint16_t PROGMEM fn_actions_0[] = {
     [ 0] = ACTION_MODS_KEY(MOD_LSFT, KC_EQL),               // FN0  = dead `
-    [ 1] = ACTION_LAYER_SET(1, ON_PRESS),                   // FN1  = set Layer 1
-    [ 2] = ACTION_LAYER_SET(2, ON_PRESS),                   // FN2  = set Layer 2
-    [ 3] = ACTION_LAYER_SET(3, ON_PRESS),                   // FN3  = set Layer 3
-    [ 4] = ACTION_LAYER_SET(4, ON_PRESS),                   // FN4  = set Layer 4
-    [ 5] = ACTION_LAYER_SET(5, ON_RELEASE),                 // FN5  = set Layer 5
-    [ 6] = ACTION_LAYER_SET(6, ON_RELEASE),                 // FN6  = set Layer 6
+    [ 1] = ACTION_LAYER_SET(1, ON_RELEASE),                 // FN1  = set Layer 1
+    [ 2] = ACTION_LAYER_ON(2, ON_PRESS),                    // FN2  = set Layer 2
+    [ 3] = ACTION_LAYER_ON(3, ON_PRESS),                    // FN3  = set Layer 3
+    [ 4] = ACTION_LAYER_ON(4, ON_PRESS),                    // FN4  = set Layer 4
+    [ 5] = ACTION_LAYER_ON(5, ON_PRESS),                    // FN5  = set Layer 5
+    [ 6] = ACTION_LAYER_ON(6, ON_RELEASE),                  // FN6  = set Layer 6
+};
+
+static const uint16_t PROGMEM fn_actions_1[] = {
+    [ 0] = ACTION_LAYER_SET(0, ON_RELEASE),                 // FN0  = Back to layer 0
+    [ 5] = ACTION_LAYER_ON(5, ON_PRESS),                    // FN5  = set Layer 5
 };
 
 // symbol-layer
-static const uint16_t PROGMEM fn_actions_1[] = {
-    [ 0] = ACTION_LAYER_SET(0, ON_RELEASE),                 // FN0  = Back to layer 0
+static const uint16_t PROGMEM fn_actions_2[] = {
+    [ 0] = ACTION_LAYER_OFF(2, ON_RELEASE),                 // FN0  = Back to layer 0
 
     [ 1] = ACTION_MODS_KEY(MOD_LSFT, KC_SLSH),              // FN1  = _
     [ 2] = ACTION_MODS_KEY(MOD_LSFT, KC_8),                 // FN2  = [
@@ -466,20 +471,20 @@ static const uint16_t PROGMEM fn_actions_1[] = {
     [29] = ACTION_MODS_KEY(MOD_LSFT, KC_BSLS),              // FN29 = '
     [30] = ACTION_MODS_KEY(MOD_LSFT, KC_COMM),              // FN30 = ;
 };
-// Plover layer
-static const uint16_t PROGMEM fn_actions_2[] = {
-    [ 0] = ACTION_LAYER_SET(0, ON_RELEASE),                 // FN0  = Back to layer 0
+static const uint16_t PROGMEM fn_actions_3[] = {
+    [ 0] = ACTION_LAYER_OFF(3, ON_RELEASE),                 // FN0  = Back to layer 0
     [ 1] = ACTION_FUNCTION(TEENSY_KEY),
     [ 2] = ACTION_MODS_KEY(MOD_LSFT, KC_COMM),              // FN2  = Shift+,           // ; in Neo2
 };
-static const uint16_t PROGMEM fn_actions_3[] = {
-    [ 0] = ACTION_LAYER_SET(0, ON_RELEASE),                 // FN0  = Back to layer 0
-};
 static const uint16_t PROGMEM fn_actions_4[] = {
-    [ 0] = ACTION_LAYER_SET(0, ON_RELEASE),
+    [ 0] = ACTION_LAYER_OFF(4, ON_RELEASE),                 // FN0  = Back to layer 0
 };
 static const uint16_t PROGMEM fn_actions_5[] = {
-    [ 0] = ACTION_LAYER_SET(0, ON_RELEASE),
+    [ 0] = ACTION_LAYER_OFF(5, ON_RELEASE),
+};
+// Plover layer
+static const uint16_t PROGMEM fn_actions_6[] = {
+    [ 0] = ACTION_LAYER_OFF(6, ON_RELEASE),
 };
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
@@ -517,6 +522,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
 #define FN_ACTIONS_3_SIZE   (sizeof(fn_actions_3) / sizeof(fn_actions_3[0]))
 #define FN_ACTIONS_4_SIZE   (sizeof(fn_actions_4) / sizeof(fn_actions_4[0]))
 #define FN_ACTIONS_5_SIZE   (sizeof(fn_actions_5) / sizeof(fn_actions_5[0]))
+#define FN_ACTIONS_6_SIZE   (sizeof(fn_actions_6) / sizeof(fn_actions_6[0]))
 
 /*
  * translates Fn keycode to action
@@ -546,6 +552,9 @@ action_t keymap_fn_to_action(uint8_t keycode)
     }
     if (layer == 5 && FN_INDEX(keycode) < FN_ACTIONS_5_SIZE) {
         action.code = pgm_read_word(&fn_actions_5[FN_INDEX(keycode)]);
+    }
+    if (layer == 6 && FN_INDEX(keycode) < FN_ACTIONS_6_SIZE) {
+        action.code = pgm_read_word(&fn_actions_6[FN_INDEX(keycode)]);
     }
 
     // by default, use fn_actions from default layer 0

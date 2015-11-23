@@ -170,7 +170,7 @@ uint8_t matrix_scan(void)
     uint8_t layer = biton32(layer_state);
 
     switch (layer) {
-        case 5:
+        case 6:
             ergodox_board_led_on();
             break;
         default:
