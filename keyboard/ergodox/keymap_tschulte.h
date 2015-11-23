@@ -49,13 +49,13 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |--------+------+------+------+------+------| PgDn |           |  Del |------+------+------+------+------+--------|
      * |        |   ü  |   ö  |   ä  |   p  |   z  |      |           |      |   b  |   m  |   ,  |   .  |   j  | Backsp |
      * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-     *   | App  | LGui |      |      |  L2  |                                       |   L3 |      |  ESC | RGui |      |
+     *   | App  | LGui |      |      |  L3  |                                       |   L4 |      |  ESC | RGui |      |
      *   `----------------------------------'                                       `----------------------------------'
      *                                        ,-------------.       ,-------------.
-     *                                        |  L5  |  L4  |       |  L4  |  L1  |
+     *                                        |  L6  |  L5  |       |  L5  |  L1  |
      *                                 ,------|------|------|       |------+------+------.
      *                                 |      |      | LAlt |       | RAlt |      |      |
-     *                                 |  L1  |LShift|------|       |------|RShift| Space|
+     *                                 |  L2  |LShift|------|       |------|RShift| Space|
      *                                 |      |      | LCtrl|       | RCtrl|      |      |
      *                                 `--------------------'       `--------------------'
      */
@@ -65,22 +65,64 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           NO,   X,   V,   L,   C,   W,PGUP,
          TAB,   U,   I,   A,   E,   O,
           NO,LBRC,SCLN,QUOT,   P,   Y,PGDN,
-         APP,LGUI,  NO,  NO, FN2,
-                                       FN5, FN4,
+         APP,LGUI,  NO,  NO, FN3,
+                                       FN6, FN5,
                                            LALT,
-                                  FN1,LSFT,LCTL,
+                                  FN2,LSFT,LCTL,
         // right hand
               EQL,   6,   7,   8,   9,   0, FN0,
               ENT,   K,   H,   G,   F,   Q,MINS,
                      S,   N,   R,   T,   D,   Z,
               DEL,   B,   M,COMM, DOT,   J,BSPC,
-                        FN3,  NO, ESC,RGUI,  NO,
-         FN4, FN1,
+                        FN4,  NO, ESC,RGUI,  NO,
+         FN5, FN1,
         RALT,
         RCTL,RSFT, SPC
     ),
     /*
-     * Keymap: Layer 1: Symbols and function keys
+     * Keymap: Layer 1: Neo2 when PC is set to Neo2
+     *
+     * ,--------------------------------------------------.           ,--------------------------------------------------.
+     * |        |   1  |   2  |   3  |   4  |   5  |  ê   |           |   é  |   6  |   7  |   8  |   9  |   0  |   è    |
+     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+     * |        |   Q  |   W  |   E  |   R  |   T  | PgUp |           | Enter|   Y  |   U  |   I  |   O  |   P  |   [    |
+     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+     * |  Tab   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |   '    |
+     * |--------+------+------+------+------+------| PgDn |           |  Del |------+------+------+------+------+--------|
+     * |        |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | Backsp |
+     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+     *   | App  | LGui |      |      |   '  |                                       |   '  |      |  ESC | RGui |      |
+     *   `----------------------------------'                                       `----------------------------------'
+     *                                        ,-------------.       ,-------------.
+     *                                        |  L5  |  L4  |       |  L4  |  L0  |
+     *                                 ,------|------|------|       |------+------+------.
+     *                                 |      |      | LAlt |       | LAlt |      |      |
+     *                                 |  L1  |LShift|------|       |------|RShift| Space|
+     *                                 |      |      | LCtrl|       | RCtrl|      |      |
+     *                                 `--------------------'       `--------------------'
+     */
+    KEYMAP(
+        // left hand
+          NO,  NO,  NO,  NO,  NO,  NO,  NO,
+          NO,   1,   2,   3,   4,   5,  NO,
+          NO,   Q,   W,   E,   R,   T,
+          NO,   A,   S,   D,   F,   G,  NO,
+          NO,  NO,  NO,  NO,  NO,
+                                       FN0,  NO,
+                                             NO,
+                                    C,   V,  NO,
+        // right hand
+               NO,  NO,  NO,  NO,  NO,  NO,  NO,
+               NO,   6,   7,   8,   9,   0,  NO,
+                     Y,   U,   I,   O,   P,LBRC,
+               NO,   H,   J,   K,   L,SCLN,QUOT,
+                         NO,  NO,  NO,  NO,  NO,
+          NO,  NO,
+          NO,
+          NO,   N,   M
+    ),
+    /*
+     * Keymap: Layer 2: Symbols and function keys
      *
      * ,--------------------------------------------------.           ,--------------------------------------------------.
      * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
@@ -122,7 +164,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS
     ),
     /*
-     * Keymap: Layer 2: Numbers
+     * Keymap: Layer 3: Numbers
      *
      * ,--------------------------------------------------.           ,--------------------------------------------------.
      * | Teensy |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
@@ -164,7 +206,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS
     ),
     /*
-     * Keymap: Layer 3: Keyboard functions
+     * Keymap: Layer 4: Keyboard functions
      *
      * ,--------------------------------------------------.           ,--------------------------------------------------.
      * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
@@ -206,7 +248,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS
     ),
     /*
-     * Keymap: Layer 4: F1-F12
+     * Keymap: Layer 5: F1-F12
      *
      * ,--------------------------------------------------.           ,--------------------------------------------------.
      * |        |   F1 |   F2 |   F3 |   F4 |   F5 |  F6  |           |  F7  |  F8  |  F9  | F10  |  F11 |  F12 |        |
@@ -248,7 +290,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS
     ),
     /*
-     * Keymap: Layer 5: Plover
+     * Keymap: Layer 6: Plover
      *
      * ,--------------------------------------------------.           ,--------------------------------------------------.
      * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
@@ -381,6 +423,7 @@ static const uint16_t PROGMEM fn_actions_0[] = {
     [ 3] = ACTION_LAYER_SET(3, ON_PRESS),                   // FN3  = set Layer 3
     [ 4] = ACTION_LAYER_SET(4, ON_PRESS),                   // FN4  = set Layer 4
     [ 5] = ACTION_LAYER_SET(5, ON_RELEASE),                 // FN5  = set Layer 5
+    [ 6] = ACTION_LAYER_SET(6, ON_RELEASE),                 // FN6  = set Layer 6
 };
 
 // symbol-layer
