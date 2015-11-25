@@ -436,8 +436,8 @@ static const uint16_t PROGMEM fn_actions_2[] = {
     [ 0] = ACTION_LAYER_OFF(2, ON_RELEASE),                 // FN0  = Back to layer 0
 
     [ 1] = ACTION_MODS_KEY(MOD_LSFT, KC_SLSH),              // FN1  = _
-    [ 2] = ACTION_MODS_KEY(MOD_LALT, KC_8),                 // FN2  = [
-    [ 3] = ACTION_MODS_KEY(MOD_LALT, KC_9),                 // FN3  = ]
+    [ 2] = ACTION_MODS_KEY(MOD_RALT, KC_8),                 // FN2  = [
+    [ 3] = ACTION_MODS_KEY(MOD_RALT, KC_9),                 // FN3  = ]
     [ 4] = ACTION_MACRO(CARET),                             // FN4  = ^
 
     [ 5] = ACTION_MODS_KEY(MOD_RALT, KC_MINS),              // FN5  = Backslash
