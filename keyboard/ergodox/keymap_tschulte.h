@@ -167,7 +167,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * Keymap: Layer 3: Numbers
      *
      * ,--------------------------------------------------.           ,--------------------------------------------------.
-     * | Teensy |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+     * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
      * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
      * |        |      |      |      |      |      |      |           |      |      |  KP7 |  KP8 |  KP9 |   +  |    -   |
      * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -187,7 +187,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     KEYMAP(
         // left hand
-         FN1,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -199,7 +199,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
              TRNS,TRNS,  P7,  P8,  P9,RBRC,SLSH,
                   TRNS,  P4,  P5,  P6,COMM, DOT,
-             TRNS,TRNS,  P1,  P2,  P3, FN2,TRNS,
+             TRNS,TRNS,  P1,  P2,  P3, FN1,TRNS,
                          P0,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,
         TRNS,
@@ -251,7 +251,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * Keymap: Layer 5: F1-F12
      *
      * ,--------------------------------------------------.           ,--------------------------------------------------.
-     * |        |   F1 |   F2 |   F3 |   F4 |   F5 |  F6  |           |  F7  |  F8  |  F9  | F10  |  F11 |  F12 |        |
+     * | Teensy |   F1 |   F2 |   F3 |   F4 |   F5 |  F6  |           |  F7  |  F8  |  F9  | F10  |  F11 |  F12 |        |
      * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
      * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
      * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -271,7 +271,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     KEYMAP(
         // left hand
-        TRNS,  F1,  F2,  F3,  F4,  F5,  F6,
+         FN1,  F1,  F2,  F3,  F4,  F5,  F6,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -481,14 +481,14 @@ static const uint16_t PROGMEM fn_actions_2[] = {
 };
 static const uint16_t PROGMEM fn_actions_3[] = {
     [ 0] = ACTION_LAYER_OFF(3, ON_RELEASE),                 // FN0  = Back to layer 0
-    [ 1] = ACTION_FUNCTION(TEENSY_KEY),
-    [ 2] = ACTION_MODS_KEY(MOD_LSFT, KC_COMM),              // FN2  = Shift+,           // ; in Neo2
+    [ 1] = ACTION_MODS_KEY(MOD_LSFT, KC_COMM),              // FN2  = Shift+,           // ; in Neo2
 };
 static const uint16_t PROGMEM fn_actions_4[] = {
     [ 0] = ACTION_LAYER_OFF(4, ON_RELEASE),                 // FN0  = Back to layer 0
 };
 static const uint16_t PROGMEM fn_actions_5[] = {
     [ 0] = ACTION_LAYER_OFF(5, ON_RELEASE),
+    [ 1] = ACTION_FUNCTION(TEENSY_KEY),
 };
 // Plover layer
 static const uint16_t PROGMEM fn_actions_6[] = {
