@@ -408,6 +408,14 @@ enum macro_id {
     GRAVE,
     LEFT_ANGLE_BRACKET,
     RIGHT_ANGLE_BRACKET,
+    LEFT_BRACKET,
+    RIGHT_BRACKET,
+    BACKSLASH,
+    LEFT_BRACE,
+    RIGHT_BRACE,
+    PIPE,
+    TILDE,
+    AT,
 };
 
 /*
@@ -436,20 +444,20 @@ static const uint16_t PROGMEM fn_actions_2[] = {
     [ 0] = ACTION_LAYER_OFF(2, ON_RELEASE),                 // FN0  = Back to layer 0
 
     [ 1] = ACTION_MODS_KEY(MOD_LSFT, KC_SLSH),              // FN1  = _
-    [ 2] = ACTION_MODS_KEY(MOD_RALT, KC_8),                 // FN2  = [
-    [ 3] = ACTION_MODS_KEY(MOD_RALT, KC_9),                 // FN3  = ]
+    [ 2] = ACTION_MACRO(LEFT_BRACKET),                      // FN2  = [
+    [ 3] = ACTION_MACRO(RIGHT_BRACKET),                     // FN3  = ]
     [ 4] = ACTION_MACRO(CARET),                             // FN4  = ^
 
-    [ 5] = ACTION_MODS_KEY(MOD_RALT, KC_MINS),              // FN5  = Backslash
+    [ 5] = ACTION_MACRO(BACKSLASH),                         // FN5  = Backslash
     [ 6] = ACTION_MODS_KEY(MOD_LSFT, KC_7),                 // FN6  = /
-    [ 7] = ACTION_MODS_KEY(MOD_RALT, KC_7),                 // FN7  = {
-    [ 8] = ACTION_MODS_KEY(MOD_RALT, KC_0),                 // FN8  = }
+    [ 7] = ACTION_MACRO(LEFT_BRACE),                        // FN7  = {
+    [ 8] = ACTION_MACRO(RIGHT_BRACE),                       // FN8  = }
     [ 9] = ACTION_MODS_KEY(MOD_LSFT, KC_RBRC),              // FN9  = *
 
     [10] = ACTION_KEY(KC_BSLS),                             // FN10 = #
     [11] = ACTION_MODS_KEY(MOD_LSFT, KC_4),                 // FN11 = $
-    [12] = ACTION_MODS_KEY(MOD_RALT, KC_NUBS),              // FN12 = |
-    [13] = ACTION_MODS_KEY(MOD_RALT, KC_RBRC),              // FN13 = ~
+    [12] = ACTION_MACRO(PIPE),                              // FN12 = |
+    [13] = ACTION_MACRO(TILDE),                             // FN13 = ~
     [14] = ACTION_MACRO(GRAVE),                             // FN14 = `
 
     [15] = ACTION_MODS_KEY(MOD_LSFT, KC_1),                 // FN15 = !
@@ -463,7 +471,7 @@ static const uint16_t PROGMEM fn_actions_2[] = {
     [22] = ACTION_MODS_KEY(MOD_LSFT, KC_9),                 // FN22 = )
     [23] = ACTION_KEY(KC_SLSH),                             // FN23 = -
     [24] = ACTION_MODS_KEY(MOD_LSFT, KC_DOT),               // FN24 = :
-    [25] = ACTION_MODS_KEY(MOD_RALT, KC_Q),                 // FN25 = @
+    [25] = ACTION_MACRO(AT),                                // FN25 = @
 
     [26] = ACTION_KEY(KC_RBRC),                             // FN26 = +
     [27] = ACTION_MODS_KEY(MOD_LSFT, KC_5),                 // FN27 = %
@@ -509,6 +517,14 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
             case GRAVE:     return MACRO(I(15), D(LSFT), T(EQL), U(LSFT), T(SPC), END);
             case LEFT_ANGLE_BRACKET:     return MACRO(I(15), T(NUBS), END);
             case RIGHT_ANGLE_BRACKET:     return MACRO(I(15), D(LSFT), T(NUBS), U(LSFT), END);
+            case LEFT_BRACKET: return MACRO(I(15), D(RALT), T(8), U(RALT), END);
+            case RIGHT_BRACKET: return MACRO(I(15), D(RALT), T(9), U(RALT), END);
+            case BACKSLASH: return MACRO(I(15), D(RALT), T(MINS), U(RALT), END);
+            case LEFT_BRACE: return MACRO(I(15), D(RALT), T(7), U(RALT), END);
+            case RIGHT_BRACE: return MACRO(I(15), D(RALT), T(0), U(RALT), END);
+            case PIPE: return MACRO(I(15), D(RALT), T(NUBS), U(RALT), END);
+            case TILDE: return MACRO(I(15), D(RALT), T(RBRC), U(RALT), END);
+            case AT: return MACRO(I(15), D(RALT), T(Q), U(RALT), END);
         }
     }
     return MACRO_NONE;
@@ -566,4 +582,3 @@ action_t keymap_fn_to_action(uint8_t keycode)
 
     return action;
 }
-
