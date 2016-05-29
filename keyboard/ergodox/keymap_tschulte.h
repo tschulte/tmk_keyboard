@@ -416,6 +416,23 @@ enum macro_id {
     PIPE,
     TILDE,
     AT,
+    DEAD_GRAVE,
+    UNDERSCORE,
+    SLASH,
+    STAR,
+    DOLLAR,
+    EXCL_MARK,
+    EQUALS,
+    AMPERSAND,
+    QUESTION_MARK,
+    LEFT_PAREN,
+    RIGHT_PAREN,
+    COLON,
+    PERCENT,
+    DOUBLE_QUOTE,
+    SINGLE_QUOTE,
+    SEMI_COLON,
+    NEO_SEMI_COLON,
 };
 
 /*
@@ -425,7 +442,7 @@ static const uint16_t PROGMEM fn_actions[] = {
 };
 
 static const uint16_t PROGMEM fn_actions_0[] = {
-    [ 0] = ACTION_MODS_KEY(MOD_LSFT, KC_EQL),               // FN0  = dead `
+    [ 0] = ACTION_MACRO(DEAD_GRAVE),                        // FN0  = dead `
     [ 1] = ACTION_LAYER_SET(1, ON_RELEASE),                 // FN1  = set Layer 1
     [ 2] = ACTION_LAYER_ON(2, ON_PRESS),                    // FN2  = set Layer 2
     [ 3] = ACTION_LAYER_ON(3, ON_PRESS),                    // FN3  = set Layer 3
@@ -443,45 +460,45 @@ static const uint16_t PROGMEM fn_actions_1[] = {
 static const uint16_t PROGMEM fn_actions_2[] = {
     [ 0] = ACTION_LAYER_OFF(2, ON_RELEASE),                 // FN0  = Back to layer 0
 
-    [ 1] = ACTION_MODS_KEY(MOD_LSFT, KC_SLSH),              // FN1  = _
+    [ 1] = ACTION_MACRO(UNDERSCORE),                        // FN1  = _
     [ 2] = ACTION_MACRO(LEFT_BRACKET),                      // FN2  = [
     [ 3] = ACTION_MACRO(RIGHT_BRACKET),                     // FN3  = ]
     [ 4] = ACTION_MACRO(CARET),                             // FN4  = ^
 
     [ 5] = ACTION_MACRO(BACKSLASH),                         // FN5  = Backslash
-    [ 6] = ACTION_MODS_KEY(MOD_LSFT, KC_7),                 // FN6  = /
+    [ 6] = ACTION_MACRO(SLASH),                             // FN6  = /
     [ 7] = ACTION_MACRO(LEFT_BRACE),                        // FN7  = {
     [ 8] = ACTION_MACRO(RIGHT_BRACE),                       // FN8  = }
-    [ 9] = ACTION_MODS_KEY(MOD_LSFT, KC_RBRC),              // FN9  = *
+    [ 9] = ACTION_MACRO(STAR),                              // FN9  = *
 
     [10] = ACTION_KEY(KC_BSLS),                             // FN10 = #
-    [11] = ACTION_MODS_KEY(MOD_LSFT, KC_4),                 // FN11 = $
+    [11] = ACTION_MACRO(DOLLAR),                            // FN11 = $
     [12] = ACTION_MACRO(PIPE),                              // FN12 = |
     [13] = ACTION_MACRO(TILDE),                             // FN13 = ~
     [14] = ACTION_MACRO(GRAVE),                             // FN14 = `
 
-    [15] = ACTION_MODS_KEY(MOD_LSFT, KC_1),                 // FN15 = !
+    [15] = ACTION_MACRO(EXCL_MARK),                         // FN15 = !
     [16] = ACTION_MACRO(LEFT_ANGLE_BRACKET),                // FN16 = <
     [17] = ACTION_MACRO(RIGHT_ANGLE_BRACKET),               // FN17 = >
-    [18] = ACTION_MODS_KEY(MOD_LSFT, KC_0),                 // FN18 = =
-    [19] = ACTION_MODS_KEY(MOD_LSFT, KC_6),                 // FN19 = &
+    [18] = ACTION_MACRO(EQUALS),                            // FN18 = =
+    [19] = ACTION_MACRO(AMPERSAND),                         // FN19 = &
 
-    [20] = ACTION_MODS_KEY(MOD_LSFT, KC_MINS),              // FN20 = ?
-    [21] = ACTION_MODS_KEY(MOD_LSFT, KC_8),                 // FN21 = (
-    [22] = ACTION_MODS_KEY(MOD_LSFT, KC_9),                 // FN22 = )
+    [20] = ACTION_MACRO(QUESTION_MARK),                     // FN20 = ?
+    [21] = ACTION_MACRO(LEFT_PAREN),                        // FN21 = (
+    [22] = ACTION_MACRO(RIGHT_PAREN),                       // FN22 = )
     [23] = ACTION_KEY(KC_SLSH),                             // FN23 = -
-    [24] = ACTION_MODS_KEY(MOD_LSFT, KC_DOT),               // FN24 = :
+    [24] = ACTION_MACRO(COLON),                             // FN24 = :
     [25] = ACTION_MACRO(AT),                                // FN25 = @
 
     [26] = ACTION_KEY(KC_RBRC),                             // FN26 = +
-    [27] = ACTION_MODS_KEY(MOD_LSFT, KC_5),                 // FN27 = %
-    [28] = ACTION_MODS_KEY(MOD_LSFT, KC_2),                 // FN28 = "
-    [29] = ACTION_MODS_KEY(MOD_LSFT, KC_BSLS),              // FN29 = '
-    [30] = ACTION_MODS_KEY(MOD_LSFT, KC_COMM),              // FN30 = ;
+    [27] = ACTION_MACRO(PERCENT),                           // FN27 = %
+    [28] = ACTION_MACRO(DOUBLE_QUOTE),                      // FN28 = "
+    [29] = ACTION_MACRO(SINGLE_QUOTE),                      // FN29 = '
+    [30] = ACTION_MACRO(SEMI_COLON),                        // FN30 = ;
 };
 static const uint16_t PROGMEM fn_actions_3[] = {
     [ 0] = ACTION_LAYER_OFF(3, ON_RELEASE),                 // FN0  = Back to layer 0
-    [ 1] = ACTION_MODS_KEY(MOD_LSFT, KC_COMM),              // FN2  = Shift+,           // ; in Neo2
+    [ 1] = ACTION_MACRO(NEO_SEMI_COLON),                    // FN2  = Shift+,           // ; in Neo2
 };
 static const uint16_t PROGMEM fn_actions_4[] = {
     [ 0] = ACTION_LAYER_OFF(4, ON_RELEASE),                 // FN0  = Back to layer 0
@@ -525,6 +542,23 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
             case PIPE: return MACRO(I(15), D(RALT), T(NUBS), U(RALT), END);
             case TILDE: return MACRO(I(15), D(RALT), T(RBRC), U(RALT), END);
             case AT: return MACRO(I(15), D(RALT), T(Q), U(RALT), END);
+            case DEAD_GRAVE: return MACRO(I(15), D(LSFT), T(EQL), U(LSFT), END);
+            case UNDERSCORE: return MACRO(I(15), D(LSFT), T(SLSH), U(LSFT), END);
+            case SLASH: return MACRO(I(15), D(LSFT), T(7), U(LSFT), END);
+            case STAR: return MACRO(I(15), D(LSFT), T(RBRC), U(LSFT), END);
+            case DOLLAR: return MACRO(I(15), D(LSFT), T(4), U(LSFT), END);
+            case EXCL_MARK: return MACRO(I(15), D(LSFT), T(1), U(LSFT), END);
+            case EQUALS: return MACRO(I(15), D(LSFT), T(0), U(LSFT), END);
+            case AMPERSAND: return MACRO(I(15), D(LSFT), T(6), U(LSFT), END);
+            case QUESTION_MARK: return MACRO(I(15), D(LSFT), T(MINS), U(LSFT), END);
+            case LEFT_PAREN: return MACRO(I(15), D(LSFT), T(8), U(LSFT), END);
+            case RIGHT_PAREN: return MACRO(I(15), D(LSFT), T(9), U(LSFT), END);
+            case COLON: return MACRO(I(15), D(LSFT), T(DOT), U(LSFT), END);
+            case PERCENT: return MACRO(I(15), D(LSFT), T(5), U(LSFT), END);
+            case DOUBLE_QUOTE: return MACRO(I(15), D(LSFT), T(2), U(LSFT), END);
+            case SINGLE_QUOTE: return MACRO(I(15), D(LSFT), T(BSLS), U(LSFT), END);
+            case SEMI_COLON: return MACRO(I(15), D(LSFT), T(COMM), U(LSFT), END);
+            case NEO_SEMI_COLON: return MACRO(I(15), D(LSFT), T(COMM), U(LSFT), END);
         }
     }
     return MACRO_NONE;
