@@ -91,7 +91,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |--------+------+------+------+------+------| PgDn |           |  Del |------+------+------+------+------+--------|
      * |        |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | Backsp |
      * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-     *   | App  | LGui |      |      | RALT |                                       | RALT |      |  ESC | RGui |      |
+     *   | App  | LGui |      |      | L3   |                                       | L4   |      |  ESC | RGui |      |
      *   `----------------------------------'                                       `----------------------------------'
      *                                        ,-------------.       ,-------------.
      *                                        |      |  L5  |       |  L5  |  L0  |
@@ -107,7 +107,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           NO,   Q,   W,   E,   R,   T,PGUP,
          TAB,   A,   S,   D,   F,   G,
           NO,   Z,   X,   C,   V,   B,PGDN,
-         APP,LGUI,  NO,  NO,RALT,
+         APP,LGUI,  NO,  NO, FN3,
                                         NO, FN5,
                                            LALT,
                                  CAPS,LSFT,LCTL,
@@ -116,7 +116,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               ENT,   Y,   U,   I,   O,   P,LBRC,
                      H,   J,   K,   L,SCLN,QUOT,
               DEL,   N,   M,COMM, DOT,SLSH,BSPC,
-                       RALT,  NO, ESC,RGUI,  NO,
+                        FN4,  NO, ESC,RGUI,  NO,
          FN5, FN0,
         LALT,
         RCTL,RSFT, SPC
@@ -453,6 +453,8 @@ static const uint16_t PROGMEM fn_actions_0[] = {
 
 static const uint16_t PROGMEM fn_actions_1[] = {
     [ 0] = ACTION_LAYER_SET(0, ON_RELEASE),                 // FN0  = Back to layer 0
+    [ 3] = ACTION_LAYER_ON(3, ON_PRESS),                    // FN3  = set Layer 3
+    [ 4] = ACTION_LAYER_ON(4, ON_PRESS),                    // FN4  = set Layer 4
     [ 5] = ACTION_LAYER_ON(5, ON_PRESS),                    // FN5  = set Layer 5
 };
 
